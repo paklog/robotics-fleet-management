@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: robotics-fleet-management
+  namespace: paklog-core
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: robotics-fleet-management
+  template:
+    metadata:
+      labels:
+        app: robotics-fleet-management
+    spec:
+      containers:
+      - name: robotics-fleet-management
+        image: paklog/robotics-fleet-management:latest
+        ports:
+        - containerPort: 8092
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: robotics-fleet-management
+  namespace: paklog-core
+spec:
+  selector:
+    app: robotics-fleet-management
+  ports:
+  - port: 8092
+    targetPort: 8092
