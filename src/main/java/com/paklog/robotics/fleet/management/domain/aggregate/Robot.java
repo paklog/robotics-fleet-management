@@ -2,7 +2,6 @@ package com.paklog.robotics.fleet.management.domain.aggregate;
 
 import com.paklog.robotics.fleet.management.domain.event.*;
 import com.paklog.robotics.fleet.management.domain.valueobject.*;
-import lombok.Getter;
 
 import java.time.Instant;
 import java.util.*;
@@ -11,7 +10,6 @@ import java.util.*;
  * Robot Aggregate Root
  * Manages robot lifecycle, task execution, and health monitoring
  */
-@Getter
 public class Robot {
 
     private RobotId robotId;
@@ -365,4 +363,31 @@ public class Robot {
     public void clearDomainEvents() {
         domainEvents.clear();
     }
+
+
+    // Getters
+    public RobotId getRobotId() { return robotId; }
+    public String getModel() { return model; }
+    public RobotStatus getStatus() { return status; }
+    public RobotPosition getPosition() { return position; }
+    public BatteryLevel getBatteryLevel() { return batteryLevel; }
+    public String getCurrentTaskId() { return currentTaskId; }
+    public Set<RobotCapability> getCapabilities() { return capabilities; }
+    public Map<String, Object> getHealthMetrics() { return healthMetrics; }
+    public Instant getLastHeartbeat() { return lastHeartbeat; }
+    public Instant getCreatedAt() { return createdAt; }
+    public Instant getUpdatedAt() { return updatedAt; }
+
+    // Setters
+    public void setRobotId(RobotId robotId) { this.robotId = robotId; }
+    public void setModel(String model) { this.model = model; }
+    public void setStatus(RobotStatus status) { this.status = status; }
+    public void setPosition(RobotPosition position) { this.position = position; }
+    public void setBatteryLevel(BatteryLevel batteryLevel) { this.batteryLevel = batteryLevel; }
+    public void setCurrentTaskId(String currentTaskId) { this.currentTaskId = currentTaskId; }
+    public void setCapabilities(Set<RobotCapability> capabilities) { this.capabilities = capabilities; }
+    public void setHealthMetrics(Map<String, Object> healthMetrics) { this.healthMetrics = healthMetrics; }
+    public void setLastHeartbeat(Instant lastHeartbeat) { this.lastHeartbeat = lastHeartbeat; }
+    public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
+    public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
 }

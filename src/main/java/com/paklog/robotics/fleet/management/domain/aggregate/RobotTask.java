@@ -1,7 +1,6 @@
 package com.paklog.robotics.fleet.management.domain.aggregate;
 
 import com.paklog.robotics.fleet.management.domain.valueobject.*;
-import lombok.Getter;
 
 import java.time.Instant;
 import java.util.Map;
@@ -10,7 +9,6 @@ import java.util.Map;
  * RobotTask Aggregate
  * Represents a task that can be assigned to a robot
  */
-@Getter
 public class RobotTask {
 
     private String taskId;
@@ -148,5 +146,62 @@ public class RobotTask {
         return status == TaskStatus.COMPLETED ||
                status == TaskStatus.FAILED ||
                status == TaskStatus.CANCELLED;
+    }
+
+    // Getters
+    public String getTaskId() {
+        return taskId;
+    }
+
+    public String getRobotId() {
+        return robotId;
+    }
+
+    public TaskType getTaskType() {
+        return taskType;
+    }
+
+    public TaskPriority getPriority() {
+        return priority;
+    }
+
+    public RobotPosition getOrigin() {
+        return origin;
+    }
+
+    public RobotPosition getDestination() {
+        return destination;
+    }
+
+    public Map<String, Object> getPayload() {
+        return payload;
+    }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    public RobotCapability getRequiredCapability() {
+        return requiredCapability;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public Instant getAssignedAt() {
+        return assignedAt;
+    }
+
+    public Instant getStartedAt() {
+        return startedAt;
+    }
+
+    public Instant getCompletedAt() {
+        return completedAt;
+    }
+
+    public String getFailureReason() {
+        return failureReason;
     }
 }

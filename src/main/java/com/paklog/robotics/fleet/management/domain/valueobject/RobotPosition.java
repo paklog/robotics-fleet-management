@@ -1,8 +1,5 @@
 package com.paklog.robotics.fleet.management.domain.valueobject;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 import java.io.Serializable;
 
@@ -10,9 +7,6 @@ import java.io.Serializable;
  * Robot Position Value Object
  * Represents robot location in warehouse grid with heading
  */
-@Getter
-@AllArgsConstructor
-@EqualsAndHashCode
 public class RobotPosition implements Serializable {
 
     private final double x;
@@ -40,6 +34,16 @@ public class RobotPosition implements Serializable {
         }
     }
 
+    public RobotPosition(
+        double x,
+        double y,
+        double heading
+    ) {
+        this.x = x;
+        this.y = y;
+        this.heading = heading;
+    }
+
     /**
      * Calculate Euclidean distance to another position
      */
@@ -59,5 +63,17 @@ public class RobotPosition implements Serializable {
     @Override
     public String toString() {
         return String.format("Position(x=%.2f, y=%.2f, heading=%.1f°)", x, y, heading);
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getHeading() {
+        return heading;
     }
 }

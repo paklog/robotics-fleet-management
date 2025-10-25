@@ -1,15 +1,24 @@
 package com.paklog.robotics.fleet.management.infrastructure.rest.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public record PathPlanRequest(
+    double startX,
+    double startY,
+    double goalX,
+    double goalY
+) {
+    public double getStartX() {
+        return startX;
+    }
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class PathPlanRequest {
-    private double startX;
-    private double startY;
-    private double goalX;
-    private double goalY;
+    public double getStartY() {
+        return startY;
+    }
+
+    public double getGoalX() {
+        return goalX;
+    }
+
+    public double getGoalY() {
+        return goalY;
+    }
 }

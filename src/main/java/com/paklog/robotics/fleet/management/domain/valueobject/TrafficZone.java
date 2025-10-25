@@ -1,8 +1,5 @@
 package com.paklog.robotics.fleet.management.domain.valueobject;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 import java.io.Serializable;
 
@@ -10,9 +7,6 @@ import java.io.Serializable;
  * Traffic Zone Value Object
  * Represents a spatial area with movement rules
  */
-@Getter
-@AllArgsConstructor
-@EqualsAndHashCode
 public class TrafficZone implements Serializable {
 
     private final String zoneId;
@@ -41,6 +35,27 @@ public class TrafficZone implements Serializable {
     /**
      * Check if a position is within this zone
      */
+
+    public TrafficZone(
+        String zoneId,
+        double minX,
+        double minY,
+        double maxX,
+        double maxY,
+        int maxRobotsAllowed,
+        double speedLimit,
+        TrafficZoneType type
+    ) {
+        this.zoneId = zoneId;
+        this.minX = minX;
+        this.minY = minY;
+        this.maxX = maxX;
+        this.maxY = maxY;
+        this.maxRobotsAllowed = maxRobotsAllowed;
+        this.speedLimit = speedLimit;
+        this.type = type;
+    }
+
     public boolean contains(RobotPosition position) {
         return position.getX() >= minX && position.getX() <= maxX &&
                position.getY() >= minY && position.getY() <= maxY;

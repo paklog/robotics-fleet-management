@@ -1,7 +1,6 @@
 package com.paklog.robotics.fleet.management.domain.aggregate;
 
 import com.paklog.robotics.fleet.management.domain.valueobject.RobotPosition;
-import lombok.Getter;
 
 import java.time.Instant;
 import java.util.*;
@@ -10,7 +9,6 @@ import java.util.*;
  * ChargingStation Aggregate
  * Manages charging station capacity and robot queue
  */
-@Getter
 public class ChargingStation {
 
     private String stationId;

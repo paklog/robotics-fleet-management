@@ -2,7 +2,6 @@ package com.paklog.robotics.fleet.management.domain.aggregate;
 
 import com.paklog.robotics.fleet.management.domain.event.FleetRebalancedEvent;
 import com.paklog.robotics.fleet.management.domain.valueobject.*;
-import lombok.Getter;
 
 import java.time.Instant;
 import java.util.*;
@@ -12,7 +11,6 @@ import java.util.stream.Collectors;
  * Fleet Aggregate
  * Manages a fleet of robots and workload distribution
  */
-@Getter
 public class Fleet {
 
     private String fleetId;
@@ -194,4 +192,25 @@ public class Fleet {
         domainEvents.clear();
         return events;
     }
+
+
+    // Getters
+    public String getFleetId() { return fleetId; }
+    public Map<String, Robot> getRobots() { return robots; }
+    public int getActiveTaskCount() { return activeTaskCount; }
+    public int getIdleRobotCount() { return idleRobotCount; }
+    public double getUtilizationRate() { return utilizationRate; }
+    public Instant getLastRebalanceAt() { return lastRebalanceAt; }
+    public Instant getCreatedAt() { return createdAt; }
+    public Instant getUpdatedAt() { return updatedAt; }
+
+    // Setters
+    public void setFleetId(String fleetId) { this.fleetId = fleetId; }
+    public void setRobots(Map<String, Robot> robots) { this.robots = robots; }
+    public void setActiveTaskCount(int activeTaskCount) { this.activeTaskCount = activeTaskCount; }
+    public void setIdleRobotCount(int idleRobotCount) { this.idleRobotCount = idleRobotCount; }
+    public void setUtilizationRate(double utilizationRate) { this.utilizationRate = utilizationRate; }
+    public void setLastRebalanceAt(Instant lastRebalanceAt) { this.lastRebalanceAt = lastRebalanceAt; }
+    public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
+    public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
 }

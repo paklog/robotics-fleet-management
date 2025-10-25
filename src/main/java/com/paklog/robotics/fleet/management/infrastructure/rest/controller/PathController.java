@@ -5,7 +5,6 @@ import com.paklog.robotics.fleet.management.domain.valueobject.PathPlan;
 import com.paklog.robotics.fleet.management.domain.valueobject.RobotPosition;
 import com.paklog.robotics.fleet.management.infrastructure.rest.dto.PathPlanRequest;
 import com.paklog.robotics.fleet.management.infrastructure.rest.dto.PathPlanResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +12,13 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1/paths")
-@RequiredArgsConstructor
 public class PathController {
 
     private final PathPlanningService pathPlanningService;
+    public PathController(PathPlanningService pathPlanningService) {
+        this.pathPlanningService = pathPlanningService;
+    }
+
 
     @PostMapping("/calculate")
     public ResponseEntity<PathPlanResponse> calculatePath(@RequestBody PathPlanRequest request) {
@@ -39,11 +41,11 @@ public class PathController {
             new ArrayList<>()
         );
 
-        PathPlanResponse response = PathPlanResponse.builder()
-            .waypointCount(path.getWaypointCount())
-            .totalDistance(path.getTotalDistance())
-            .estimatedTimeSeconds(path.getEstimatedTimeSeconds())
-            .build();
+        PathPlanResponse response = new PathPlanResponse(
+            path.getWaypointCount(),
+            path.getTotalDistance(),
+            path.getEstimatedTimeSeconds()
+        );
 
         return ResponseEntity.ok(response);
     }

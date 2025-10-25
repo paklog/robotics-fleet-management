@@ -1,7 +1,5 @@
 package com.paklog.robotics.fleet.management.domain.valueobject;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 import java.io.Serializable;
 
@@ -9,8 +7,6 @@ import java.io.Serializable;
  * Battery Level Value Object
  * Represents robot battery percentage with health status
  */
-@Getter
-@EqualsAndHashCode
 public class BatteryLevel implements Serializable {
 
     private final int percentage;
@@ -27,6 +23,17 @@ public class BatteryLevel implements Serializable {
         }
         this.percentage = percentage;
         this.healthStatus = determineHealthStatus(percentage);
+    }
+
+    public BatteryLevel(
+        int percentage,
+        BatteryHealthStatus healthStatus
+    ) {
+        if (percentage < 0 || percentage > 100) {
+            throw new IllegalArgumentException("Battery percentage must be between 0 and 100");
+        }
+        this.percentage = percentage;
+        this.healthStatus = healthStatus;
     }
 
     public static BatteryLevel of(int percentage) {
@@ -74,5 +81,13 @@ public class BatteryLevel implements Serializable {
     @Override
     public String toString() {
         return String.format("Battery(%d%% - %s)", percentage, healthStatus);
+    }
+
+    public int getPercentage() {
+        return percentage;
+    }
+
+    public BatteryHealthStatus getHealthStatus() {
+        return healthStatus;
     }
 }

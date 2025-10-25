@@ -1,25 +1,17 @@
 package com.paklog.robotics.fleet.management.domain.valueobject;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-
 import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Robot ID Value Object
  */
-@Getter
-@EqualsAndHashCode
-public class RobotId implements Serializable {
+public record RobotId(
+    String value
+) implements Serializable {
 
-    private final String value;
-
-    private RobotId(String value) {
-        if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("Robot ID cannot be null or empty");
-        }
-        this.value = value;
+    public String getValue() {
+        return value;
     }
 
     public static RobotId of(String value) {
@@ -27,11 +19,6 @@ public class RobotId implements Serializable {
     }
 
     public static RobotId generate() {
-        return new RobotId("ROBOT-" + UUID.randomUUID().toString());
-    }
-
-    @Override
-    public String toString() {
-        return value;
+        return new RobotId(UUID.randomUUID().toString());
     }
 }
